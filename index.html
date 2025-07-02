@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date with Rozay</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Hey Rozay 🌹</h1>
+        <p class="intro">It's me — Zion 😄<br>
+        I’ve been thinking… how about making <strong>July 5th</strong> our own little adventure?<br>
+        I’ve got a few ideas and I’d love to know which one you'd like to do.</p>
+
+        <form action="https://formspree.io/f/mwpbzkev" method="POST" onsubmit="showMessage(event)">
+            <label>Are you free on July 5th?</label>
+            <select name="availability" required>
+                <option value="">-- Please choose --</option>
+                <option value="Yes">Yes, I'm free!</option>
+                <option value="No">No, not this time 😔</option>
+            </select>
+
+            <label>Pick one activity you'd like us to do:</label>
+            <select name="activity" required>
+                <option value="">-- Select an activity --</option>
+                <option value="Wine Tasting 🍷">Wine Tasting 🍷</option>
+                <option value="Dinner 🍽️">Dinner 🍽️</option>
+                <option value="Go Karting 🏎️">Go Karting 🏎️</option>
+                <option value="Movies 🎬">Movies 🎬</option>
+            </select>
+
+            <label>Leave a cute message for Zion 💌</label>
+            <textarea name="message" placeholder="Write something sweet..." rows="3"></textarea>
+
+            <button type="submit">Send Your Answer 💌</button>
+        </form>
+
+        <div class="secret-message" id="secretMessage">
+            <h2>💖 Thank you, Rozay 💖</h2>
+            <p>P.S. I think you're the sweetest surprise in my life. I can't wait to do this with you 💕 — Zion</p>
+        </div>
+    </div>
+
+    <script>
+        function showMessage(event) {
+            event.preventDefault();
+            const form = event.target;
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            }).then(() => {
+                form.style.display = 'none';
+                document.getElementById('secretMessage').style.display = 'block';
+            }).catch(error => {
+                alert('Oops! Something went wrong.');
+            });
+        }
+    </script>
+</body>
+</html>
